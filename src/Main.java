@@ -31,7 +31,7 @@ public class Main {
         int countD = countUniqValue(arr);
         System.out.println("Количество уникальных = " +countD);
         //System.out.println("Количество уникальных = " +countDistinctWithStream(arr));
-        System.out.println("Количество повторов = " +countRepeatsValue(arr));
+        System.out.println("Количество повторов = " +countRepeatsValue(arr)*2);
     }
 
     public static int countUniqValue(int[] arr) {
