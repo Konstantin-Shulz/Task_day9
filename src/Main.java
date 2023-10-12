@@ -1,10 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
     //    System.out.println("Введите целое число х размер массива");
     //    Scanner sc = new Scanner(System.in);
@@ -40,7 +43,16 @@ public class Main {
         System.out.println("в массиве "+countD+" разных чисел");
         System.out.println(Arrays.toString(arr));
         System.out.println("Периметр треугольника = "+ calcPerimeter(arr));
+
+
+        int perim = calcPerimeter(arr);
+
+        String outputName ="perimeter";
+        String s = String.valueOf(perim);
+        Files.writeString(Path.of(outputName),s);
+
     }
+
 
     public static int calcPerimeter(int[] arr) {
         int p= 0;
