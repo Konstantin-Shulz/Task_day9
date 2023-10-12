@@ -1,20 +1,22 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
-        System.out.println("Введите целое число х размер массива");
-        Scanner sc = new Scanner(System.in);
-        int x = sc.nextInt();
-        int[] arr = new int[x];
-        //    System.out.println(x);
+    //    System.out.println("Введите целое число х размер массива");
+    //    Scanner sc = new Scanner(System.in);
+    //    int x = sc.nextInt();
+    //    int[] arr = new int[x];
+    //    System.out.println(x);
 
-        System.out.println("Введите массив целых чисел " +x+" раз(a)");
-        for (int i=0; i< arr.length; i++ ){
-            arr[i] = sc.nextInt();
-        }
-        System.out.println(Arrays.toString(arr));
+    //    System.out.println("Введите массив целых чисел " +x+" раз(a)");
+    //    for (int i=0; i< arr.length; i++ ){
+    //        arr[i] = sc.nextInt();
+    //    }
+    //    System.out.println(Arrays.toString(arr));
 
         //double sum = calcSumm(arr); //расчет суммы элементов массива
         //System.out.println("Сумма элементов массива = " +sum);
@@ -28,10 +30,33 @@ public class Main {
         //double mediana = calcMedian(arr); //расчет медианы после любой сортировки
         //System.out.println("Медиана = " +mediana);
 
+
+        //int[] arr= readArrayFromFile("input_array");
+        int[] arr= readArrayFromFile("tr.txt");
         int countD = countUniqValue(arr);
-        System.out.println("Количество уникальных = " +countD);
+        //System.out.println("Количество уникальных = " +countD);
         //System.out.println("Количество уникальных = " +countDistinctWithStream(arr));
         System.out.println("Количество повторов = " +countRepeatsValue(arr)*2);
+        System.out.println("в массиве "+countD+" разных чисел");
+        System.out.println(Arrays.toString(arr));
+        System.out.println("Периметр треугольника = "+ calcPerimeter(arr));
+    }
+
+    public static int calcPerimeter(int[] arr) {
+        int p= 0;
+        for (int i = 0; i < arr.length; i++) {
+            p = p + arr[i];
+        }
+        return p;
+    }
+    private static int[] readArrayFromFile(String fileName) throws FileNotFoundException {
+        Scanner sc = new Scanner(new File(fileName));
+    int n = sc.nextInt();
+    int[] mas = new int[n];
+    for (int i=0; i< mas.length; i++ ){
+        mas[i] = sc.nextInt();
+    }
+        return mas;
     }
 
     public static int countUniqValue(int[] arr) {
@@ -57,8 +82,7 @@ public class Main {
         }
         return count;
     }
-    public static int countDistinctWithStream(int[] mas)
-    {
+    public static int countDistinctWithStream(int[] mas) {
         return (int) Arrays.stream(mas).distinct().count();
     }
 
